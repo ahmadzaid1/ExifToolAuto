@@ -3,7 +3,7 @@ Automating the process of removing metadata from files using ExifTool.
 
 # Prerequisites
 - [ExifTool](https://exiftool.org/)
-- [inotify-tools](https://github.com/inotify-tools/inotify-tools)  (for monitoring the desired directory).
+- [inotify-tools](https://github.com/inotify-tools/inotify-tools)  (for monitoring the Downloads directory).
 
 # Installation
 1. Clone the Repository.
