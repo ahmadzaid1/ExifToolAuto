@@ -38,9 +38,10 @@ To enable overwriting of the original file, change `OVERWRITE=false` to `OVERWRI
 ```bash
 OVERWRITE=true
 ```
-## Original ExifTool Repository
+# Original ExifTool Repository
 
 This repository provides scripts to automate the process of removing metadata from files using ExifTool. For more information about ExifTool and its usage, you can refer to the original ExifTool repository.
 
 -   **ExifTool Repository**: [exiftool/exiftool](https://github.com/exiftool/exiftool)
-##
+# Log file
+The remove_metadata.sh script logs its actions to a file named metadata_removal.log in the same directory as the script. This log file contains information about each file processed by the script.
