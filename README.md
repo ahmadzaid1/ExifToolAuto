@@ -1,9 +1,10 @@
+
 Automating the process of removing metadata from files using ExifTool.
 
 
 # Prerequisites
 - [ExifTool](https://exiftool.org/)
-- [inotify-tools](https://github.com/inotify-tools/inotify-tools)  (for monitoring the Downloads directory).
+- [watchdog](https://github.com/gorakhargosh/watchdog)  (for monitoring the Downloads directory).
 
 # Installation
 1. Clone the Repository.
@@ -11,32 +12,54 @@ Automating the process of removing metadata from files using ExifTool.
 git clone https://github.com/ahmadzaid1/ExifToolAuto.git
 cd ExifToolAuto
 ```
-2. Make the scripts executable.
+2. Make the script executable.
 ```bash
-chmod +x remove_metadata.sh 
-chmod +x watch_downloads.sh
+chmod +x metaDataRemover.py
 ```
-# Usage 
-1. Run the Watcher Script:
+3. Run the script:
 ```bash 
-./watch_downloads.sh
+python3 metaDataRemover.py
 ```
 This script will start monitoring the Downloads directory for new files and automatically remove their metadata.
 
 # Setting Up the Script to Run on Startup
-By default, the script will stop working if the session is closed or the computer is shut down. To ensure the script runs automatically every time you turn on your computer, you can add it to your `crontab`.
-```sh
-crontab -e
-@reboot /path/to/your/script/watch_downloads.sh`
+By default, the script will stop working if the session is closed or the computer is shut down. To ensure the script runs automatically every time you turn on your computer, you can add it as a service to your `systemd`.
+Open a terminal and create a new service unit file for your script. For example:
+1. Create a systemd Service Unit File:
+```bash 
+sudo nano /etc/systemd/system/metaDataRemover.service
 ```
-# Configuration
-### Overwriting Files
-
-By default, the script does not overwrite the original file. Instead, it creates a new file with `_metadataremoved` appended to the filename.
-
-To enable overwriting of the original file, change `OVERWRITE=false` to `OVERWRITE=true` in `remove_metadata.sh`.
+2. Add Service Configuration:
 ```bash
-OVERWRITE=true
+[Unit]
+Description=Metadata Remover Service
+After=network.target
+
+[Service]
+Type=simple
+User=yourusername
+ExecStart=/usr/bin/python3 /path/to/metaDataRemover.py
+WorkingDirectory=/path/to/Downloads/directory
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+3. Save and Close the File
+
+  In Nano, press `Ctrl+O`, then `Enter` to save the file. Press `Ctrl+X` to exit Nano.
+  
+4. Reload systemd:
+```bash
+sudo systemctl daemon-reload
+```
+5. Enable the Service to Start on Boot:
+```bash
+sudo systemctl enable metaDataRemover.service
+```
+6. Start the Service:
+```bash
+sudo systemctl status metaDataRemover.service
 ```
 # Original ExifTool Repository
 
