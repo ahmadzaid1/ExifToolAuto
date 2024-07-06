@@ -68,7 +68,7 @@ This repository provides scripts to automate the process of removing metadata fr
 
 -   **ExifTool Repository**: [exiftool/exiftool](https://github.com/exiftool/exiftool)
 ## Log file
-The remove_metadata.sh script logs its actions to a file named metadata_removal.log in the Downloads directory. This log file contains information about each file processed by the script.
+The script logs its actions to a file named metadata_removal.log in the Downloads directory. This log file contains information about each file processed by the script.
 ## License
 
 This project is licensed under the [The Unlicense](https://unlicense.org/) - see the [LICENSE](https://github.com/ahmadzaid1/ExifToolAuto/blob/main/LICENSE) file for details.
