@@ -23,7 +23,7 @@ python3 metaDataRemover.py
 ```
 This script will start monitoring the Downloads directory for new files and automatically remove their metadata.
 
-## Setting Up the Script to Run on Startup
+## Setting Up the Script to Run on Startup-Optional
 By default, the script will stop working if the session is closed or the computer is shut down. To ensure the script runs automatically every time you turn on your computer, you can add it as a service to your `systemd`.
 Open a terminal and create a new service unit file for your script. For example:
 1. Create a systemd Service Unit File:
